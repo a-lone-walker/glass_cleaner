@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wall Climbing Glass Cleaning Robot | Causa Scientia Exhibition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            color: #3b82f6;
+        }
+        
+        .robot-diagram {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .gallery-image {
+            transition: all 0.3s ease;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .component-card {
+            transition: all 0.3s ease;
+        }
+        
+        .component-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Swiper carousel styles */
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .swiper-slide {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background-color: #3b82f6 !important;
+        }
+        
+        /* Rover animation */
+        .rover-animation {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .rover {
+            position: absolute;
+            width: 100px;
+            height: 80px;
+            background-image: url('https://www.svgrepo.com/show/530438/robot-cleaner.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            bottom: 20px;
+            left: -100px;
+            transition: left 0.5s ease-out;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-bg {
+                min-height: 80vh;
+            }
+            
+            .hero-bg h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-bg p {
+                font-size: 1.2rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .working-steps {
+                padding: 0 1rem;
+            }
+            
+            .advantages-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .future-advancements-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .components-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-bg h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-bg p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.75rem;
+            }
+            
+            .feature-card {
+                padding: 1rem;
+            }
+            
+            .feature-icon {
+                font-size: 2rem;
+            }
+            
+            .working-steps {
+                padding: 0;
+            }
+            
+            .step-number {
+                width: 30px;
+                height: 30px;
+                font-size: 0.875rem;
+            }
+            
+            .future-advancements-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .components-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .social-icons {
+                margin-top: 1rem;
+            }
+        }
+        
+        /* Additional mobile-friendly styles */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .working-content {
+                flex-direction: column-reverse;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-button {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.875rem;
+            }
+            
+            .section-divider {
+                margin: 1rem auto;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <script>
+        // Initialize AOS on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                easing: 'ease-in-out'
+            });
+            
+            // Initialize Swiper
+            const swiper = new Swiper('.swiper', {
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+            
+            // Rover animation on scroll
+            const rover = document.querySelector('.rover');
+            const roverAnimationSection = document.querySelector('.rover-animation-section');
+            
+            function animateRover() {
+                const sectionTop = roverAnimationSection.getBoundingClientRect().top;
+                const sectionHeight = roverAnimationSection.offsetHeight;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+                    const progress = 1 - (sectionTop + sectionHeight) / (windowHeight + sectionHeight);
+                    const newPosition = progress * (window.innerWidth + 100) - 100;
+                    rover.style.left = `${newPosition}px`;
+                }
+                
+                requestAnimationFrame(animateRover);
+            }
+            
+            animateRover();
+        });
+    </script>
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white shadow-md z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-robot text-blue-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-gray-800">GlassBot</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-blue-500 transition">About</a>
+                    <a href="#components" class="text-gray-700 hover:text-blue-500 transition">Components</a>
+                    <a href="#working" class="text-gray-700 hover:text-blue-500 transition">Working</a>
+                    <a href="#gallery" class="text-gray-700 hover:text-blue-500 transition">Gallery</a>
+                    <a href="#team" class="text-gray-700 hover:text-blue-500 transition">Team</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">About</a>
+                <a href="#components" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Components</a>
+                <a href="#working" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Working</a>
+                <a href="#gallery" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Gallery</a>
+                <a href="#team" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-gray-50">Team</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-bg min-h-screen flex items-center justify-center text-white pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">Wall Climbing Glass Cleaning Robot</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Presented at <span class="font-semibold">Causa Scientia</span> by The Global Edge School</p>
+            <a href="#about" class="hero-button inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105">
+                Explore Project <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4">About The Project</h2>
+                <div class="section-divider w-20 h-1 bg-blue-500 mx-auto"></div>
+            </div>
+            
+            <div class="about-content flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1605152276897-4f618f831968?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Robot cleaning glass" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Revolutionizing High-Rise Building Maintenance</h3>
+                    <p class="text-gray-600 mb-6">Our Wall Climbing Glass Cleaning Robot is designed to autonomously clean the glass surfaces of buildings using vacuum suction technology, eliminating the need for dangerous human window cleaning at heights.</p>
+                    <p class="text-gray-600 mb-6">Developed by students of The Global Edge School for the Causa Scientia exhibition, this project demonstrates how robotics can solve real-world safety challenges in building maintenance.</p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="text-blue-700 font-medium"><i class="fas fa-lightbulb text-blue-500 mr-2"></i> This innovation provides a safe, efficient, and cost-effective solution for glass cleaning without human risk.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Components Section -->
+    <section id="components" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4">Key Components</h2>
+                <div class="section-divider w-20 h-1 bg-blue-500 mx-auto"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4">The building blocks of our innovative glass cleaning robot</p>
+            </div>
+            
+            <div class="components-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Component 1 -->
+                <div class="component-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-microchip text-blue-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">ESP32 Microcontroller</h3>
+                    <p class="text-gray-600 text-sm text-center">The brain of our robot that controls all operations and processes sensor data.</p>
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2021/12/QO/YD/JA/3033603/esp32-development-board.jpg" alt="ESP32" class="mt-4 rounded-lg w-full h-40 object-contain">
+                </div>
+                
+                <!-- Component 2 -->
+                <div class="component-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-cog text-green-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">BLDC Motor 2200kV</h3>
+                    <p class="text-gray-600 text-sm text-center">High-speed brushless motor that powers the vacuum suction system.</p>
+                    <img src="https://5.imimg.com/data5/ANDROID/Default/2021/3/RI/NC/YQ/38272857/product-jpeg-500x500.jpg" alt="BLDC Motor" class="mt-4 rounded-lg w-full h-40 object-contain">
+                </div>
+                
+                <!-- Component 3 -->
+                <div class="component-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-battery-three-quarters text-purple-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">5200mAh 3S Battery</h3>
+                    <p class="text-gray-600 text-sm text-center">High-capacity lithium polymer battery providing long operation time.</p>
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2022/1/YD/KK/JA/3033603/11-1-v-5200mah-3s-30c-lipo-battery.jpg" alt="Lipo Battery" class="mt-4 rounded-lg w-full h-40 object-contain">
+                </div>
+                
+                <!-- Component 4 -->
+                <div class="component-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-print text-yellow-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">3D Printed Chassis</h3>
+                    <p class="text-gray-600 text-sm text-center">Lightweight and durable frame custom designed for our robot.</p>
+                    <img src="https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8M2QlMjBwcmludGVkJTIwcm9ib3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" alt="3D Printed Chassis" class="mt-4 rounded-lg w-full h-40 object-contain">
+                </div>
+                
+                <!-- Component 5 -->
+                <div class="component-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-tachometer-alt text-red-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Electronic Speed Controller</h3>
+                    <p class="text-gray-600 text-sm text-center">Controls the speed and direction of the BLDC motor precisely.</p>
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2021/12/VA/BP/GT/3033603/30a-brushless-esc.jpg" alt="ESC" class="mt-4 rounded-lg w-full h-40 object-contain">
+                </div>
+                
+                <!-- Component 6 -->
+                <div class="component-card bg-white p-6 rounded-lg shadow-md">
+                    <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i class="fas fa-motorcycle text-indigo-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">N20 12V DC Motors</h3>
+                    <p class="text-gray-600 text-sm text-center">Compact high-torque motors for wheel movement and navigation.</p>
+                    <img src="https://5.imimg.com/data5/SELLER/Default/2021/12/BN/XT/ZT/3033603/n20-gear-motor.jpg" alt="N20 Motor" class="mt-4 rounded-lg w-full h-40 object-contain">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Block Diagram Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4">System Block Diagram</h2>
+                <div class="section-divider w-20 h-1 bg-blue-500 mx-auto"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4">Visual representation of how all components work together</p>
+            </div>
+            
+            <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                <img src="https://www.researchgate.net/publication/334387142/figure/fig1/AS:779960625180672@1562929815436/Block-diagram-of-the-proposed-system.png" alt="Block Diagram" class="w-full max-w-4xl mx-auto rounded-lg shadow-md">
+            </div>
+            
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-blue-700 mb-2">Input Components</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> Power Supply</li>
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> Remote Control</li>
+                        <li><i class="fas fa-check-circle text-blue-500 mr-2"></i> Proximity Sensors</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-green-700 mb-2">Control Unit</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li><i class="fas fa-microchip text-green-500 mr-2"></i> ESP32 Microcontroller</li>
+                        <li><i class="fas fa-project-diagram text-green-500 mr-2"></i> Motor Drivers</li>
+                        <li><i class="fas fa-tachometer-alt text-green-500 mr-2"></i> ESC Controller</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h4 class="font-semibold text-purple-700 mb-2">Output Components</h4>
+                    <ul class="text-sm text-gray-700 space-y-1">
+                        <li><i class="fas fa-cog text-purple-500 mr-2"></i> BLDC Motor</li>
+                        <li><i class="fas fa-fan text-purple-500 mr-2"></i> Vacuum System</li>
+                        <li><i class="fas fa-tint text-purple-500 mr-2"></i> Cleaning Mechanism</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Working Principle Section -->
+    <section id="working" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4">How It Works</h2>
+                <div class="section-divider w-20 h-1 bg-blue-500 mx-auto"></div>
+            </div>
+            
+            <div class="working-content flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <div class="robot-diagram bg-gray-100 p-8 rounded-lg">
+                        <img src="https://www.svgrepo.com/show/530438/robot-cleaner.svg" alt="Robot diagram" class="w-full max-w-md mx-auto">
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="working-steps space-y-8">
+                        <!-- Step 1 -->
+                        <div class="flex items-start">
+                            <div class="step-number flex-shrink-0 bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center text-white mr-4 mt-1">
+                                <span class="font-bold">1</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Vacuum Attachment</h3>
+                                <p class="text-gray-600">The BLDC motor powers a propeller to create strong vacuum suction, allowing the robot to adhere securely to glass surfaces.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div class="flex items-start">
+                            <div class="step-number flex-shrink-0 bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center text-white mr-4 mt-1">
+                                <span class="font-bold">2</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Movement</h3>
+                                <p class="text-gray-600">N20 DC motors drive the wheels, moving the robot across the glass surface while maintaining suction.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3 -->
+                        <div class="flex items-start">
+                            <div class="step-number flex-shrink-0 bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center text-white mr-4 mt-1">
+                                <span class="font-bold">3</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Cleaning</h3>
+                                <p class="text-gray-600">Microfiber cleaning pads remove dirt and grime as the robot moves, with optional water spray for tough stains.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4 -->
+                        <div class="flex items-start">
+                            <div class="step-number flex-shrink-0 bg-blue-500 rounded-full w-10 h-10 flex items-center justify-center text-white mr-4 mt-1">
+                                <span class="font-bold">4</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Control</h3>
+                                <p class="text-gray-600">The ESP32 microcontroller processes commands from the remote control and manages all robot functions.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rover Animation Section -->
+    <section class="rover-animation-section py-16 bg-gradient-to-r from-blue-50 to-cyan-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold text-gray-800">See Our Robot In Action</h3>
+                <p class="text-gray-600">The rover moves across glass surfaces using vacuum suction</p>
+            </div>
+            
+            <div class="rover-animation bg-white p-8 rounded-xl shadow-inner border border-gray-200">
+                <div class="rover"></div>
+                <div class="h-32 bg-gradient-to-b from-blue-100 to-blue-50 rounded-lg flex items-center justify-center">
+                    <p class="text-gray-500">Glass Surface</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <p class="text-gray-600">Scroll up and down to see the rover move across the glass!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section with Swiper -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4">Project Gallery</h2>
+                <div class="section-divider w-20 h-1 bg-blue-500 mx-auto"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4">Moments from our journey building the glass cleaning robot</p>
+            </div>
+            
+            <div class="swiper max-w-4xl mx-auto">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Team working">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white">
+                            <h3 class="font-semibold">Team Brainstorming</h3>
+                            <p class="text-sm">Initial design discussions</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1526&q=80" alt="Components">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white">
+                            <h3 class="font-semibold">Component Assembly</h3>
+                            <p class="text-sm">Putting together the electronics</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1556910639-9e7738a1188c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Testing">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white">
+                            <h3 class="font-semibold">Field Testing</h3>
+                            <p class="text-sm">Checking the vacuum suction</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Presentation">
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 text-white">
+                            <h3 class="font-semibold">Final Presentation</h3>
+                            <p class="text-sm">Demonstrating at Causa Scientia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add pagination -->
+                <div class="swiper-pagination"></div>
+                
+                <!-- Navigation buttons -->
+                <div class="swiper-button-next text-white bg-black bg-opacity-30 rounded-full w-12 h-12"></div>
+                <div class="swiper-button-prev text-white bg-black bg-opacity-30 rounded-full w-12 h-12"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-gray-800 mb-4">Our Team</h2>
+                <div class="section-divider w-20 h-1 bg-blue-500 mx-auto"></div>
+                <p class="text-gray-600 max-w-3xl mx-auto mt-4">The brilliant minds from The Global Edge School behind this innovative project</p>
+            </div>
+            
+            <div class="team-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md text-center">
+                    <div class="bg-blue-500 h-32 flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-1">P. Saharsh Reddy</h3>
+                        <p class="text-blue-500 mb-2">Team Member</p>
+                        <p class="text-gray-600 text-sm">Class 6</p>
+                        <p class="text-gray-500 text-xs mt-2">Electronics & Assembly</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md text-center">
+                    <div class="bg-green-500 h-32 flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-1">B. Gagan</h3>
+                        <p class="text-green-500 mb-2">Team Member</p>
+                        <p class="text-gray-600 text-sm">Class 8</p>
+                        <p class="text-gray-500 text-xs mt-2">Programming & Testing</p>
+                    </div>
+                </div>
+                
+                <!-- Mentor -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md text-center">
+                    <div class="bg-purple-500 h-32 flex items-center justify-center">
+                        <i class="fas fa-chalkboard-teacher text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-1">Ashok Kadagala</h3>
+                        <p class="text-purple-500 mb-2">Project Mentor</p>
+                        <p class="text-gray-600 text-sm">Robotics Trainer</p>
+                        <p class="text-gray-500 text-xs mt-2">DPS & The Global Edge School</p>
+                    </div>
+                </div>
+                
+                <!-- School -->
+                <div class="bg-white rounded-lg overflow-hidden shadow-md text-center">
+                    <div class="bg-yellow-500 h-32 flex items-center justify-center">
+                        <i class="fas fa-school text-white text-6xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-1">The Global Edge School</h3>
+                        <p class="text-yellow-500 mb-2">Institution</p>
+                        <p class="text-gray-600 text-sm">Project Host</p>
+                        <p class="text-gray-500 text-xs mt-2">Causa Scientia Exhibition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold mb-2">Wall Climbing Glass Cleaning Robot</h2>
+                <p class="text-gray-300">Presented at Causa Scientia 2025 – The Global Edge School</p>
+            </div>
+            
+            <div class="footer-content flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <p class="text-gray-400">&copy; 2025 The Global Edge School Robotics Team. All rights reserved.</p>
+                </div>
+                
+                <div class="social-icons flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p class="text-gray-400 text-sm">For inquiries about this project, please contact: robotics@globaledgeschool.edu</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-blue-500 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.feature-card, .gallery-image, .robot-diagram');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('animate-fade-in');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
